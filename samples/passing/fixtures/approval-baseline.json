@@ -1,0 +1,8 @@
+{
+  "content": "{\"status\":\"approved\",\"reason\":\"checks passed\"}",
+  "latencyMs": 390,
+  "estimatedCostUsd": 0.00031,
+  "metadata": {
+    "model": "recorded-baseline"
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+reports/
+model-ledger-report.json
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db

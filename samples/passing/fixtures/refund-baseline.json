@@ -1,0 +1,15 @@
+{
+  "content": "The refund window is 30 days.",
+  "latencyMs": 500,
+  "usage": {
+    "inputTokens": 800,
+    "outputTokens": 100
+  },
+  "pricing": {
+    "inputPerMillionUsd": 0.5,
+    "outputPerMillionUsd": 1.5
+  },
+  "metadata": {
+    "model": "recorded-baseline"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "model-ledger",
+  "version": "0.1.0",
+  "description": "Offline-first regression checks for recorded LLM outputs.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "bin": {
+    "model-ledger": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "demo": "npm run build && node dist/cli.js run samples/passing/suite.json --report reports/passing.json",
+    "demo:failing": "npm run build && node dist/cli.js run samples/failing/suite.json --report reports/failing.json"
+  },
+  "dependencies": {
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.3.1",
+    "eslint": "^10.10.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.42.0",
+    "vitest": "^5.0.0"
+  }
+}

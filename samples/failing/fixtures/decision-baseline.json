@@ -1,0 +1,8 @@
+{
+  "content": "{\"status\":\"approved\",\"window\":\"30 days\"}",
+  "latencyMs": 400,
+  "estimatedCostUsd": 0.001,
+  "metadata": {
+    "model": "recorded-baseline"
+  }
+}

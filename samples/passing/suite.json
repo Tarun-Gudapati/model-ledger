@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "name": "customer-support-passing",
+  "description": "A candidate that stays within all configured quality, latency, and cost gates.",
+  "gates": {
+    "minimumScore": 0.95,
+    "maxFailedCases": 0,
+    "failOnScorerError": true
+  },
+  "cases": [
+    {
+      "id": "refund-policy",
+      "description": "The model should preserve the approved refund answer.",
+      "baseline": {
+        "fixture": "fixtures/refund-baseline.json"
+      },
+      "candidate": {
+        "fixture": "fixtures/refund-candidate.json"
+      },
+      "minimumScore": 1,
+      "scorers": [
+        {
+          "id": "answer-stability",
+          "type": "exact-match",
+          "options": {
+            "trim": true,
+            "caseSensitive": true,
+            "collapseWhitespace": true
+          }
+        },
+        {
+          "id": "policy-terms",
+          "type": "contains-required-terms",
+          "options": {
+            "terms": ["refund", "30 days"],
+            "match": "all"
+          }
+        },
+        {
+          "id": "latency",
+          "type": "latency-budget",
+          "options": {
+            "maxMs": 650,
+            "maxIncreasePercent": 30
+          }
+        },
+        {
+          "id": "cost",
+          "type": "estimated-cost-budget",
+          "options": {
+            "maxUsd": 0.001,
+            "maxIncreasePercent": 25
+          }
+        }
+      ]
+    },
+    {
+      "id": "approval-json",
+      "description": "The model should return a machine-readable approval payload.",
+      "baseline": {
+        "fixture": "fixtures/approval-baseline.json"
+      },
+      "candidate": {
+        "fixture": "fixtures/approval-candidate.json"
+      },
+      "scorers": [
+        {
+          "id": "json-shape",
+          "type": "valid-json",
+          "options": {
+            "requireObject": true
+          }
+        },
+        {
+          "id": "approval-vocabulary",
+          "type": "contains-required-terms",
+          "options": {
+            "terms": ["status", "approved"],
+            "caseSensitive": false
+          }
+        },
+        {
+          "id": "latency",
+          "type": "latency-budget",
+          "options": {
+            "maxMs": 450
+          }
+        },
+        {
+          "id": "cost",
+          "type": "estimated-cost-budget",
+          "options": {
+            "maxUsd": 0.0005
+          }
+        }
+      ]
+    }
+  ]
+}

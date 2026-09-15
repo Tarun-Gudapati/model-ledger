@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "customer-support-failing",
+  "description": "An intentionally regressed candidate used to demonstrate non-zero exit behavior.",
+  "gates": {
+    "minimumScore": 0.8,
+    "maxFailedCases": 0,
+    "failOnScorerError": true
+  },
+  "cases": [
+    {
+      "id": "structured-refund-decision",
+      "baseline": {
+        "fixture": "fixtures/decision-baseline.json"
+      },
+      "candidate": {
+        "fixture": "fixtures/decision-candidate.json"
+      },
+      "minimumScore": 0.8,
+      "scorers": [
+        {
+          "id": "stable-output",
+          "type": "exact-match"
+        },
+        {
+          "id": "required-policy-language",
+          "type": "contains-required-terms",
+          "options": {
+            "terms": ["approved", "30 days"],
+            "match": "all"
+          }
+        },
+        {
+          "id": "valid-payload",
+          "type": "valid-json",
+          "options": {
+            "requireObject": true
+          }
+        },
+        {
+          "id": "latency",
+          "type": "latency-budget",
+          "options": {
+            "maxMs": 600,
+            "maxIncreasePercent": 20
+          }
+        },
+        {
+          "id": "cost",
+          "type": "estimated-cost-budget",
+          "options": {
+            "maxUsd": 0.002,
+            "maxIncreasePercent": 50
+          }
+        }
+      ]
+    }
+  ]
+}

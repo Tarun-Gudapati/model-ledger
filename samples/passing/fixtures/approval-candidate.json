@@ -1,0 +1,8 @@
+{
+  "content": "{\n  \"status\": \"approved\",\n  \"reason\": \"checks passed\"\n}",
+  "latencyMs": 420,
+  "estimatedCostUsd": 0.00034,
+  "metadata": {
+    "model": "recorded-candidate"
+  }
+}
